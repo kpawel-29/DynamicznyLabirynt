@@ -5,7 +5,7 @@
   "main": "serwer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node zad1.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "connect": "2.14.x",
