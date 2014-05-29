@@ -1,6 +1,8 @@
 // set variables for environment
 var express = require('express');
 var app = express();
+var path = require('path');
+var http = require('http');
 var server = http.createServer(app);
 var socketio = require('socket.io');
 var io = socketio.listen(server);
@@ -11,6 +13,7 @@ var csocket = ioc.connect('localhost', {
 
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components/jquery/dist')));
 
 app.get('/', function (req, res) {
@@ -21,6 +24,6 @@ app.get('/', function (req, res) {
 app.listen(8080);
 console.log('server is running');
 
-server.listen(4000, function () {
+/*server.listen(4000, function () {
     console.log('Serwer działa na porcie 4000');
-});
+});*/

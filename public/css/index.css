@@ -1,0 +1,40 @@
+.gameArea{
+background-color: lightslategray;
+width: 230px;
+height: 270px;
+border-style: outset;
+text-align: center;
+margin: auto;
+margin-top: 40px;
+}
+button{
+	background-color: black;
+	padding: 0;
+	width: 20px;
+	height: 20px;
+}
+.radar{
+display: block;
+height: 150px;
+width: 150px;
+float: right;
+margin-top: 40px;
+margin-right: 100px;
+background-color: lightgrey;
+text-align: center;
+text-decoration: underline;
+}
+.navbar{
+	position: static;
+	background-color: lightgrey;
+}
+body{
+	background-color: linen;
+}
+.b4, .b11, .b13, .b14, .b15, .b16, .b17, 
+.b20, .b22, .b26, .b29, .b31, .b32, .b33, 
+.b35, .b38, .b42, .b44, .b47, .b49, .b50, 
+.b51, .b53, .b56, .b58, .b62, .b65, .b66, 
+.b67, .b69, .b70, .b71, .b78{
+	background-color: yellow;
+}
