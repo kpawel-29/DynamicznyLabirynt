@@ -1,18 +1,46 @@
-.gameArea{
+#gamearea{
 background-color: lightslategray;
-width: 230px;
-height: 270px;
+width: 540px;
+height: 480px;
 border-style: outset;
 text-align: center;
 margin: auto;
 margin-top: 40px;
 }
-button{
-	background-color: black;
-	padding: 0;
-	width: 20px;
-	height: 20px;
+.w{
+	display: inline-block;
+background-color: rgb(48, 30, 30);
+width: 18px;
+height: 18px;
+margin-top: -5px;
+border-style: solid;
+border-color: grey;
+border-width: 1px;	
 }
+.f{
+display: inline-block;
+background-color: rgb(238, 238, 163);
+padding: 0;
+width: 20px;
+height: 20px;
+margin-top: -5px;
+/* border-style: solid;
+border-color: green;
+border-width: 1px */;
+}
+.p{
+display: inline-block;
+background-color: red;
+padding: 0;
+width: 20px;
+height: 20px;
+margin-top: -5px;
+/* border-style: solid;
+border-color: green;
+border-width: 1px */;
+}
+
+
 .radar{
 display: block;
 height: 150px;
