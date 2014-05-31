@@ -3,7 +3,8 @@ $(document).ready(function(){
 var startBtn = $('#startbtn'),
     gameArea = $('#gamearea'),
     playerPosition,
-    pressedKey;
+    pressedKey,
+    rand;
 
 var labiryntFloors = [/*14,*/28,29,30,31,32,33,34,35,36,38,39,40,41,42,43,44,45,46,48,49,50,52,
 55,57,60,62,65,71,73,75,77,79,82,84,85,87,89,90,91,92,94,95,96,98,100,101,102,104,105,106,121,123,125,129,136,137,138,139,140,141,142,143,144,145,
@@ -17,60 +18,87 @@ var labiryntFloors = [/*14,*/28,29,30,31,32,33,34,35,36,38,39,40,41,42,43,44,45,
 startBtn.on('click', function(){
     for (var i = 0; i < 567; i++) {
         if (isInArray(i, labiryntFloors)) {   
-            gameArea.append('<div class="f" data-id='+i+'></div>');
+            gameArea.append('<div class="h" data-id='+i+'></div>');
             //daj obrazek podlogi
         } else{
-            gameArea.append('<div class="w" data-id='+i+'></div>');
+            gameArea.append('<div class="h" data-id='+i+'></div>');
             //daj obrazek sciany
         };
-        //wstaw koniec linii
-        if (i>10 && i%27==0) {
-            //gameArea.append("<br />");
-        }
     };
-    setPlayerPosition();
+    setPlayerFirstPosition();
 });
 
 
 $('body').bind('keypress', function(e) {
     if(e.keyCode==119){//w
-        pressedKey = 'w';
+        movePlayer('w');
     }else if(e.keyCode==115){//s
-        pressedKey = 's';
+        movePlayer('s');
     }else if(e.keyCode==97){//a
-        pressedKey = 'a';
+        movePlayer('a');
     }else if(e.keyCode==100){//d
-        pressedKey = 'd';
+        movePlayer('d');
     }
 });
 
+var movePlayer = function(key) {
+    var position = gameArea.find('.p').data('id');
+    if (key == 'w') {
+        if (isInArray(position-27, labiryntFloors)) {
+            changeBackground('p',position);
+            position -= 27;
+            gameArea.find('.f[data-id="'+position+'"]').removeClass('f').addClass('p');
+            showAreaNearPlayer(position);
+        };
+    } else if (key == 's') {
+        if (isInArray(position+27, labiryntFloors)) {
+            changeBackground('p',position);
+            position += 27;
+            gameArea.find('.f[data-id="'+position+'"]').removeClass('f').addClass('p');
+            showAreaNearPlayer(position);
+        };
+    } else if (key == 'a') {
+        if (isInArray(position-1, labiryntFloors)) {
+            changeBackground('p',position);
+            position -= 1;
+            gameArea.find('.f[data-id="'+position+'"]').removeClass('f').addClass('p');
+            showAreaNearPlayer(position);
+        };
+    } else if (key == 'd') {
+        if (isInArray(position+1, labiryntFloors)) {
+            changeBackground('p',position);
+            position += 1;
+            gameArea.find('.f[data-id="'+position+'"]').removeClass('f').addClass('p');
+            showAreaNearPlayer(position);
+        };
+    };
+};
 
-var setPlayerPosition = function() {
-    var rand = labiryntFloors.randomElement();
-    playerPosition = gameArea.find('.f[data-id="'+rand+'"]');
-    playerPosition.removeClass('f').addClass('p');
+var setPlayerFirstPosition = function() {
+    rand = labiryntFloors.randomElement();
+    playerPosition = gameArea.find('.h[data-id="'+rand+'"]');
+    playerPosition.removeClass('h').addClass('p');
     showAreaNearPlayer(rand);
 };
 
+var changeBackground = function(selector, position) {
+    if (isInArray(position, labiryntFloors)) {
+      gameArea.find('.'+selector+'[data-id="'+(position)+'"]').removeClass(selector).addClass('f');  
+    } else{
+        gameArea.find('.'+selector+'[data-id="'+(position)+'"]').removeClass(selector).addClass('w');  
+    };
+    
+};
+
 var showAreaNearPlayer = function(position) {
-    gameArea.find('.f[data-id="'+(position+1)+'"]').css("background-color", "grey");
-    gameArea.find('.f[data-id="'+(position-1)+'"]').css("background-color", "grey");
-    gameArea.find('.f[data-id="'+(position+27)+'"]').css("background-color", "grey");
-    gameArea.find('.f[data-id="'+(position+26)+'"]').css("background-color", "grey");
-    gameArea.find('.f[data-id="'+(position+28)+'"]').css("background-color", "grey");
-    gameArea.find('.f[data-id="'+(position-26)+'"]').css("background-color", "grey");
-    gameArea.find('.f[data-id="'+(position-27)+'"]').css("background-color", "grey");
-    gameArea.find('.f[data-id="'+(position-28)+'"]').css("background-color", "grey");
-
-    gameArea.find('.w[data-id="'+(position+1)+'"]').css("background-color", "grey");
-    gameArea.find('.w[data-id="'+(position-1)+'"]').css("background-color", "grey");
-    gameArea.find('.w[data-id="'+(position+27)+'"]').css("background-color", "grey");
-    gameArea.find('.w[data-id="'+(position+26)+'"]').css("background-color", "grey");
-    gameArea.find('.w[data-id="'+(position+28)+'"]').css("background-color", "grey");
-    gameArea.find('.w[data-id="'+(position-26)+'"]').css("background-color", "grey");
-    gameArea.find('.w[data-id="'+(position-27)+'"]').css("background-color", "grey");
-    gameArea.find('.w[data-id="'+(position-28)+'"]').css("background-color", "grey");
-
+    changeBackground('h',position+1);
+    changeBackground('h',position-1);
+    changeBackground('h',position+27);
+    changeBackground('h',position+26);
+    changeBackground('h',position+28);
+    changeBackground('h',position-26);
+    changeBackground('h',position-27);
+    changeBackground('h',position-28);
 };
 
 Array.prototype.randomElement = function () {
