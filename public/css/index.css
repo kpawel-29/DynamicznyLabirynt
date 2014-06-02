@@ -39,6 +39,17 @@ margin-top: -5px;
 border-color: green;
 border-width: 1px */;
 }
+.c{
+display: inline-block;
+background-color: rgb(255, 105, 177);
+padding: 0;
+width: 18px;
+height: 18px;
+margin-top: -5px;
+border-style: solid;
+border-color: green;
+border-width: 1px
+}
 .h{
 display: inline-block;
 background-color: rgb(250, 229, 229);

@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 
 // Set server port
 app.listen(8080);
-console.log('server is running');
+console.log('server is running, port: 8080');
 
 /*server.listen(4000, function () {
     console.log('Serwer działa na porcie 4000');
