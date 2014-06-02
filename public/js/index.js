@@ -30,7 +30,7 @@ startBtn.on('click', function(){
 });
 
 var generateRadarArea = function() {
-    for (var i = 0; i < 16; i++) {
+    for (var i = 0; i < 64; i++) {
        radarArea.append('<div class="re" data-id='+i+'></div>') 
    };
 };
@@ -135,30 +135,52 @@ var findRadarPosition = function(id) {//id - pozycja gracza w gamearea
     var wiersz;//w ktorym wierszu
     var idRadar;
     //znajduje kolumnę/4 i wiersz 
-    for (var i = 0; i < 20; i++) {
-        if ((i*27 <=id) && (id <= i*27+5)) {
+    for (var i = 0; i < 20; i++) {//petla przechodzi po wierszach
+        if ((i*27 <=id) && (id <= i*27+2)) {
             wiersz = i;
             kol = 1;
-        }else if ((i*27+6 <=id) && (id <= i*27+12)) {
+        }else if ((i*27+3 <=id) && (id <= i*27+5)) {
             wiersz = i;
             kol = 2;
-        }else if ((i*27+13 <=id) && (id <= i*27+18)) {
+        }else if ((i*27+6 <=id) && (id <= i*27+9)) {
             wiersz = i;
             kol = 3;
-        }else if ((i*27+19 <=id) && (id <= i*27+25)) {
+        }else if ((i*27+10 <=id) && (id <= i*27+12)) {
             wiersz = i;
             kol = 4;
+        }else if ((i*27+13 <=id) && (id <= i*27+15)) {
+            wiersz = i;
+            kol = 5;
+        }else if ((i*27+16 <=id) && (id <= i*27+18)) {
+            wiersz = i;
+            kol = 6;
+        }else if ((i*27+19 <=id) && (id <= i*27+22)) {
+            wiersz = i;
+            kol = 7;
+        }else if ((i*27+23 <=id) && (id <= i*27+26)) {
+            wiersz = i;
+            kol = 8;
         };
     };
+    //console.log('');
+    //console.log('wiersz: '+wiersz+"kol: "+kol);
     //zamienia wyniki na id radaru
-    if ((1<=wiersz) && (wiersz<=4)) {
+    if ((1<=wiersz) && (wiersz<=2)) {
         idRadar = -1 + kol;
-    }else if ((5<=wiersz) && (wiersz<=9)) {
-        idRadar = 3 + kol;
-    }else if ((10<=wiersz) && (wiersz<=14)) {
+    }else if ((3<=wiersz) && (wiersz<=4)) {
         idRadar = 7 + kol;
-    }else if ((15<=wiersz) && (wiersz<=19)) {
-        idRadar = 11 + kol;
+    }else if ((5<=wiersz) && (wiersz<=6)) {
+        idRadar = 15 + kol;
+    }else if ((7<=wiersz) && (wiersz<=9)) {
+        idRadar = 23 + kol;
+    }else if ((10<=wiersz) && (wiersz<=11)) {
+        idRadar = 31 + kol;
+    }else if ((12<=wiersz) && (wiersz<=14)) {
+        idRadar = 39 + kol;
+    }else if ((15<=wiersz) && (wiersz<=16)) {
+        idRadar = 47 + kol;
+    }else if ((17<=wiersz) && (wiersz<=19)) {
+        idRadar = 55 + kol;
     };
     //console.log('idRadar: '+idRadar);
     return idRadar;
