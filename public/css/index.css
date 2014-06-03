@@ -1,115 +1,121 @@
 #gamearea{
-background-color: lightslategray;
-width: 540px;
-height: 480px;
-border-style: outset;
-text-align: center;
-margin: auto;
-margin-top: 40px;
+	background-color: rgba(0, 126, 252, 0.81);
+	width: 540px;
+	height: 480px;
+	border-style: outset;
+	text-align: center;
+	margin: auto;
+	margin-top: 25px;
 }
 .w{
 	display: inline-block;
-background-color: rgb(48, 30, 30);
-width: 18px;
-height: 18px;
-margin-top: -5px;
-border-style: solid;
-border-color: grey;
-border-width: 1px;	
+	background-color: rgb(48, 30, 30);
+	width: 18px;
+	height: 18px;
+	margin-top: -5px;
+	border-style: solid;
+	border-color: grey;
+	border-width: 1px;	
 }
 .f{
-display: inline-block;
-background-color: rgb(238, 238, 163);
-padding: 0;
-width: 20px;
-height: 20px;
-margin-top: -5px;
-/* border-style: solid;
-border-color: green;
-border-width: 1px */;
+	display: inline-block;
+	background-color: rgb(238, 238, 163);
+	padding: 0;
+	width: 20px;
+	height: 20px;
+	margin-top: -5px;
 }
 .p{
-display: inline-block;
-background-color: red;
-padding: 0;
-width: 18px;
-height: 18px;
-margin-top: -5px;
-border-style: solid;
-border-width: 1px;
-border-color: rgb(238, 238, 163);
+	display: inline-block;
+	background-color: red;
+	padding: 0;
+	width: 18px;
+	height: 18px;
+	margin-top: -5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgb(238, 238, 163);
 }
 .c{
-display: inline-block;
-background-color: rgb(255, 105, 177);
-padding: 0;
-width: 18px;
-height: 18px;
-margin-top: -5px;
-border-style: solid;
-border-color: rgb(238, 238, 163);
-border-width: 1px
+	display: inline-block;
+	background-color: rgb(255, 105, 177);
+	padding: 0;
+	width: 18px;
+	height: 18px;
+	margin-top: -5px;
+	border-style: solid;
+	border-color: rgb(238, 238, 163);
+	border-width: 1px
 }
 .h{
-display: inline-block;
-background-color: rgba(250, 229, 229, 0.72);
-padding: 0;
-width: 18px;
-height: 18px;
-margin-top: -5px;
-border-style: solid;
-border-width: 1px;
-border-color: grey;
+	display: inline-block;
+	background-color: rgba(124, 125, 126, 0.74);
+	padding: 0;
+	width: 18px;
+	height: 18px;
+	margin-top: -5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: grey;
 }
 .re{
-display: inline-block;
-background-color: rgb(33, 42, 28);
-padding: 0;
-width: 18px;
-height: 18px;
-margin-top: -5px;
-border-style: solid;
-border-width: 1px;
-border-color: grey;
+	display: inline-block;
+	background-color: rgb(33, 42, 28);
+	padding: 0;
+	width: 18px;
+	height: 18px;
+	margin-top: -5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: grey;
 }
 .rne{
-display: inline-block;
-background-color: rgb(22, 209, 5);
-padding: 0;
-width: 18px;
-height: 18px;
-margin-top: -5px;
-border-style: solid;
-border-width: 1px;
-border-color: grey;
+	display: inline-block;
+	background-color: rgb(22, 209, 5);
+	padding: 0;
+	width: 18px;
+	height: 18px;
+	margin-top: -5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: grey;
 }
 #radar{
-display: block;
-height: 220px;
-width: 163px;
-float: right;
-margin-top: 40px;
-margin-right: 100px;
-background-color: lightgrey;
-text-align: center;
-text-decoration: underline;
-border-style: outset;
+	display: block;
+	height: 215px;
+	width: 160px;
+	float: right;
+	margin-top: 30px;
+	margin-right: 100px;
+	background-color: rgb(43, 136, 43);
+	text-align: center;
+	text-decoration: underline;
+	border-style: outset;
 }
 .info{
-display: block;
-background-color: rgb(76, 165, 76);
-width: 200px;
-height: 200px;
-float: left;
-margin: 43px;
-border-style: outset;
-text-align: center;
+	display: block;
+	background-color: rgb(76, 165, 76);
+	width: 200px;
+	height: 200px;
+	float: left;
+	margin-left: 100px;
+	margin-top: 30px;
+	border-style: outset;
+	text-align: center;
+	text-decoration: underline;
 }
 .navbar{
 	position: static;
-	background-color: lightgrey;
+	background-color: inherit;
+	color: #fff;
+	font-size: 15px;
+	padding: 15px 20px;
+	font-family: sans-serif;
 }
 body{
-	background-color: linen;
+	background-color: rgb(4, 45, 77);
 }
-
+#startbtn1, #open, #startbtn2{
+	float:right;
+	margin-left: 60px;
+}

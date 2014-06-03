@@ -7,15 +7,14 @@ var startBtn1 = $('#startbtn1'),
     radarArea = $('#radar'),
     info = $('.info'),
     open = $('#open'),
-    playerPosition,
-    pressedKey,
-    rand,
-    //coinPosition,
     secPlayerPosition,
-    socket,
     labiryntFloors,
-    playerId,
+    playerPosition,
     secPlayerId;
+    pressedKey,
+    playerId,
+    socket,
+    rand,
 
     startBtn1.hide();
     startBtn2.hide();
@@ -52,11 +51,9 @@ open.on("click", function(){
     socket.on('updatePosition', function(data) {
         secPlayerPosition = data;
         updateRadar(findRadarPosition(secPlayerPosition), 're', 'rne');
-        //console.log("dostałem pozycję: "+ secPlayerPosition);
     });
     
 });
-
 
 startBtn1.on('click', function(){
     startGame(startBtn1);
@@ -76,9 +73,6 @@ var startGame = function(button) {
         socket.emit('askForStart', 'askForStart');
 };
 
-
-
-    
 var generateGameArea = function(playerId, labiryntId) {
     labiryntFloors = labirynty[labiryntId];
     for (var i = 0; i < 567; i++) {  
@@ -86,9 +80,7 @@ var generateGameArea = function(playerId, labiryntId) {
         gameArea.append('<div class="h" data-id='+i+'></div>');
     };
     setPlayerFirstPosition(playerId);
-    //coinPosition = putCoinOnTheFloor();
     generateRadarArea();
-    //updateRadar(findRadarPosition(coinPosition),'re', 'rne');
 };
 var generateRadarArea = function() {
     for (var i = 0; i < 64; i++) {
@@ -146,7 +138,6 @@ var movePlayer = function(key) {
 var updateGameArea = function(position){
     gameArea.find('.f[data-id="'+position+'"]').removeClass('f').addClass(playerId);
     showAreaNearPlayer(position);
-    //playerPosition = position;
     checkCollision(position);
     socket.emit('updateMyPosition', position);
 };
@@ -173,13 +164,6 @@ var setPlayerFirstPosition = function(playerId) {
     playerPosition.removeClass('h').addClass(playerId);
     showAreaNearPlayer(rand);
 };
-
-/*var putCoinOnTheFloor = function() {
-    coinPosition = labiryntFloors.randomElement();
-    //coinPosition = gameArea.find('.h[data-id="'+rand+'"]');
-    //coinPosition.removeClass('h').addClass('c');
-    return coinPosition;
-};*/
 
 var changeBackground = function(selector, position) {
     if (isInArray(position, labiryntFloors)) {
@@ -221,8 +205,6 @@ var findRadarPosition = function(id) {//id - pozycja gracza w gamearea
             kol = 8;
         };
     };
-    //console.log('');
-    //console.log('wiersz: '+wiersz+"kol: "+kol);
     //zamienia wyniki na id radaru
     if ((1<=wiersz) && (wiersz<=2)) {
         idRadar = -1 + kol;
@@ -241,15 +223,12 @@ var findRadarPosition = function(id) {//id - pozycja gracza w gamearea
     }else if ((17<=wiersz) && (wiersz<=19)) {
         idRadar = 55 + kol;
     };
-    //console.log('idRadar: '+idRadar);
     return idRadar;
 };
 
 var updateRadar = function(position, before, after) {
     radarArea.find('.rne').removeClass('rne').addClass('re');
-             //.find('.rne').removeClass('rne').addClass('re');
     radarArea.find('.'+before+'[data-id="'+position+'"]').removeClass(before).addClass(after);
-    //console.log(position, before, after);
 };
 //zamienia z hidden na f - jeżeli pozycja jest floor, w - jezeli pozycja jest wall 
 var showAreaNearPlayer = function(position) {
