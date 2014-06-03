@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <title>DynamicznyLabirynt</title>
   <link rel="stylesheet" href="css/index.css">
+  <script src="/socket.io/socket.io.js"></script>
   <script src="jquery.min.js"></script>
   <script src="js/index.js"></script>
 </head>
 <body>
-    <div class="navbar">navbar
-      <button type="button" id="startbtn">Start</button>
+    <div class="navbar "> 
+      <button type="button" id="open" >Połącz</button>&nbsp;
+      <button type="button" id="startbtn1">Gracz 1</button>&nbsp;
+      <button type="button" id="startbtn2">Gracz 2</button>
     </div>
-    <div id="radar">
+    <div class='info col-md-4'>Info</div>
+    <div id="radar" class="col-md-4">
       <h5>radar</h5>    
     </div>
 
-  <div id="gamearea">
+  <div id="gamearea" class="col-md-4">
     <h2>game area</h2>
   </div>
   
