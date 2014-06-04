@@ -10,11 +10,10 @@ var startBtn1 = $('#startbtn1'),
     secPlayerPosition,
     labiryntFloors,
     playerPosition,
-    secPlayerId;
-    pressedKey,
+    secPlayerId,
     playerId,
     socket,
-    rand,
+    rand;
 
     startBtn1.hide();
     startBtn2.hide();
@@ -43,7 +42,7 @@ open.on("click", function(){
             startBtn1.attr('disabled', 'disabled');
         }else if (data.id == 2) {
             startBtn2.attr('disabled', 'disabled');
-        };
+        }
     });
     socket.on('startGame', function(labiryntId) {
         generateGameArea(playerId, labiryntId);
@@ -78,14 +77,14 @@ var generateGameArea = function(playerId, labiryntId) {
     for (var i = 0; i < 567; i++) {  
         //if (isInArray(i, labiryntFloors)) { gameArea.append('<div class="f" data-id='+i+'></div>'); } else{ gameArea.append('<div class="w" data-id='+i+'></div>');    };
         gameArea.append('<div class="h" data-id='+i+'></div>');
-    };
+    }
     setPlayerFirstPosition(playerId);
     generateRadarArea();
 };
 var generateRadarArea = function() {
     for (var i = 0; i < 64; i++) {
        radarArea.append('<div class="re" data-id='+i+'></div>');
-   };
+   }
 };
 
 $('body').bind('keydown', function(e) {
@@ -106,33 +105,33 @@ $('body').bind('keydown', function(e) {
 });
 
 var movePlayer = function(key) {
-    var klasa;    if (playerId == 'p') { klasa = '.p';} else {klasa = '.c';};
+    var klasa;    if (playerId == 'p') { klasa = '.p';} else {klasa = '.c';}
     var position = gameArea.find(klasa).data('id');
     if (key == 'up') {
         if (isInArray(position-27, labiryntFloors)) {
             changeBackground(playerId,position);
             position -= 27;
             updateGameArea(position);
-        };
+        }
     } else if (key == 'down') {
         if (isInArray(position+27, labiryntFloors)) {
             changeBackground(playerId,position);
             position += 27;
             updateGameArea(position);
-        };
+        }
     } else if (key == 'left') {
         if (isInArray(position-1, labiryntFloors)) {
             changeBackground(playerId,position);
             position -= 1;
             updateGameArea(position, -1);
-        };
+        }
     } else if (key == 'right') {
         if (isInArray(position+1, labiryntFloors)) {
             changeBackground(playerId,position);
             position += 1;
             updateGameArea(position);
-        };
-    };
+        }
+    }
 };
 
 var updateGameArea = function(position){
@@ -155,7 +154,7 @@ var checkCollision = function(position) {
     }else if (position+27 == secPlayerPosition) {
         gameArea.find('.f[data-id="'+(position+27)+'"]').removeClass('h').addClass(secPlayerId);
         alert('znalazłeś');
-    };
+    }
 };  
 
 var setPlayerFirstPosition = function(playerId) {
@@ -170,7 +169,7 @@ var changeBackground = function(selector, position) {
       gameArea.find('.'+selector+'[data-id="'+(position)+'"]').removeClass(selector).addClass('f');  
     } else{
         gameArea.find('.'+selector+'[data-id="'+(position)+'"]').removeClass(selector).addClass('w');  
-    };  
+    }
 };
 
 var findRadarPosition = function(id) {//id - pozycja gracza w gamearea
@@ -203,8 +202,8 @@ var findRadarPosition = function(id) {//id - pozycja gracza w gamearea
         }else if ((i*27+23 <=id) && (id <= i*27+26)) {
             wiersz = i;
             kol = 8;
-        };
-    };
+        }
+    }
     //zamienia wyniki na id radaru
     if ((1<=wiersz) && (wiersz<=2)) {
         idRadar = -1 + kol;
@@ -222,7 +221,7 @@ var findRadarPosition = function(id) {//id - pozycja gracza w gamearea
         idRadar = 47 + kol;
     }else if ((17<=wiersz) && (wiersz<=19)) {
         idRadar = 55 + kol;
-    };
+    }
     return idRadar;
 };
 
@@ -244,9 +243,9 @@ var showAreaNearPlayer = function(position) {
 
 Array.prototype.randomElement = function () {
     return this[Math.floor(Math.random() * this.length)];
-}
+};
 function isInArray(value, array) {
   return array.indexOf(value) > -1;
-};
+}
 
 });
