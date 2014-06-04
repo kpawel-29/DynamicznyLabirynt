@@ -60,7 +60,7 @@ io.sockets.on('connection', function (socket) {
     });
     socket.on('askForStart', function() {
         if (player1 && player2) {
-            var rand = Math.floor(Math.random() * 4);
+            var rand = Math.floor(Math.random() * 6);
             socket.emit('startGame', rand);
             socket.broadcast.emit('startGame', rand);
         };
