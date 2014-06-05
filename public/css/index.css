@@ -1,12 +1,3 @@
-#gamearea{
-	background-color: rgba(0, 126, 252, 0.81);
-	width: 540px;
-	height: 480px;
-	border-style: outset;
-	text-align: center;
-	margin: auto;
-	margin-top: 25px;
-}
 .w{
 	display: inline-block;
 	background-color: rgb(48, 30, 30);
@@ -80,13 +71,16 @@
 	border-width: 1px;
 	border-color: grey;
 }
+.body{
+	margin: auto;
+	width: 1000px;
+	height: 500px;
+	display: flex;
+}
 #radar{
 	display: block;
 	height: 215px;
 	width: 160px;
-	float: right;
-	margin-top: 30px;
-	margin-right: 100px;
 	background-color: rgb(43, 136, 43);
 	text-align: center;
 	text-decoration: underline;
@@ -97,12 +91,19 @@
 	background-color: rgb(76, 165, 76);
 	width: 200px;
 	height: 200px;
-	float: left;
-	margin-left: 100px;
-	margin-top: 30px;
 	border-style: outset;
 	text-align: center;
 	text-decoration: underline;
+}
+#gamearea{
+	background-color: rgba(0, 126, 252, 0.81);
+	width: 540px;
+	height: 480px;
+	border-style: outset;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 40px;
+	margin-right: 40px;
 }
 .navbar{
 	position: static;
@@ -114,6 +115,10 @@
 }
 body{
 	background-color: rgb(4, 45, 77);
+	width: 100%; 
+	height: 100%; 
+	margin: 0px; 
+	padding: 0px; 
 }
 #startbtn1, #open, #startbtn2, #close{
 	float: right;

@@ -69,7 +69,7 @@ open.on("click", function(){
         startBtn2.hide().removeAttr('disabled').css('color', 'white');
         open.show();
         close.hide();
-        socket.emit('disconnect', playerId);
+        socket.emit('close', playerId);
         console.log('Połączenie przez Socket.io zostało zakończone');
     });
      socket.on("alert", function(data) {

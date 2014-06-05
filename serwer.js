@@ -1,5 +1,4 @@
 /*jshint node: true */
-var less = require('less-middleware');
 var socketio = require('socket.io');
 var express = require('express');
 var connect = require("connect");
@@ -28,7 +27,6 @@ app.use(express.urlencoded());
 }));*/
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components/jquery/dist')));
-app.use(express.static(path.join(__dirname, 'bower_components/bootstrap/dist')));
 
 app.get('/', function (req, res) {
     res.redirect('/index.html');
@@ -38,23 +36,23 @@ var player2 = false;
 io.sockets.on('connection', function (socket) {
     console.log('połączenie przez Socket.io');
     
-    socket.on('getPlayerList', function () {
-    	if(player1){
-       		socket.emit('playerLogIn', {html: '<p>Gracz 1 zalogowany</p>', id: 1} );
-    	};
-    	if(player2){
-   			socket.emit('playerLogIn', {html: '<p>Gracz 2 zalogowany</p>', id: 2} );
-    	};
+    socket.on('getPlayerList', function(){
+     if(player1){
+      socket.emit('playerLogIn', {html: '<p>Gracz 1 zalogowany</p>', id: 1} );
+     }
+     if(player2){
+      socket.emit('playerLogIn', {html: '<p>Gracz 2 zalogowany</p>', id: 2} );
+     }
     });
     socket.on('login', function (data) {
         console.log(data);
         if(data == "Gracz 1"){
-        	player1 = true;
+            player1 = true;
             socket.emit('playerLogIn', {html: '<p>Gracz 1 zalogowany</p>', id: 1} );
             socket.broadcast.emit('playerLogIn', {html: '<p>Gracz 1 zalogowany</p>', id: 1} );
         }
         if(data == "Gracz 2"){
-        	player2 = true;
+            player2 = true;
             socket.emit('playerLogIn', {html: '<p>Gracz 2 zalogowany</p>', id: 2} );
             socket.broadcast.emit('playerLogIn', {html: '<p>Gracz 2 zalogowany</p>', id: 2} );
         }
@@ -64,7 +62,7 @@ io.sockets.on('connection', function (socket) {
             var rand = Math.floor(Math.random() * 6);
             socket.emit('startGame', rand);
             socket.broadcast.emit('startGame', rand);
-        };
+        }
     });
     socket.on('updateMyPosition', function(position) {
         socket.broadcast.emit('updatePosition', position);
@@ -77,14 +75,14 @@ io.sockets.on('connection', function (socket) {
         socket.emit('startGame', rand);
         socket.broadcast.emit('startGame', rand);
     });
-    socket.on('disconnect', function (data) {
+    socket.on('close', function (data) {
         if (data == "h") {
             player1 = false;
-        };
+        }
         if (data == "c") {
             player2 = false;
-        };
-    })
+        }
+    });
 
 });
 
