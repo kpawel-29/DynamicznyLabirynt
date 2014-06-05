@@ -1,6 +1,6 @@
 Dynamiczny labirynt
 =========
->Labirynt jest generowany losowo, 2 osoby pojawiają się na planszy, w rogu jest radar ktory pokazuje polozenie 2 osoby i naszym zadaniem jest dotrzeć do niego
+>Labirynt jest wybierany losowo z dostępnych 6 plansz. Maksymalna liczba graczy to 2. Celem gracza jest odnalezienie kolegi w labiryncie, pomaga w tym radar, który wskazuje aktualne położenie 2 gracza. 
 
 
 Opis
@@ -9,5 +9,6 @@ Opis
 > Aplikacja wykorzystująca technologie:
 - node.js
 - JavaScript
+- jQuery
 - html
 - css
