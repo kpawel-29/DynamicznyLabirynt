@@ -1,13 +1,14 @@
-/*jshint browser: true, jquery: true, devel:true */
-/*global io: false */
+ /*jshint globalstrict: true, devel: true, browser: true, jquery: true */ 
+ /* global io */
 $(function () {
 var startBtn1 = $('#startbtn1'),
     startBtn2 = $('#startbtn2'),
     gameArea = $('#gamearea'),
     radarArea = $('#radar'),
     close = $('#close'),
-    info = $('#info'),
     open = $('#open'),
+    p1 = $('.p1'),
+    p2 = $('.p2'),
     secPlayerPosition,
     labiryntFloors,
     playerPosition,
@@ -42,21 +43,45 @@ open.on("click", function(){
         console.log('Błąd połączenia z serwerem: ' + JSON.stringify(err));
     });
     socket.on("playerLogIn", function(data){
-        info.append(data.html);
+        //info.append(data.html);
         if (data.id == 1) {
             startBtn1.attr('disabled', 'disabled').css('color','grey');
+            p1.css('color', 'rgb(82, 255, 15)');
         }else if (data.id == 2) {
             startBtn2.attr('disabled', 'disabled').css('color','grey');
+            p2.css('color', 'rgb(82, 255, 15)');
         }
     });
     socket.on('startGame', function(labiryntId) {
+        gameArea.html('<h2>obszar gry</h2>');
+        radarArea.html('<h5>radar</h5>');
         generateGameArea(playerId, labiryntId);
     });
     socket.on('updatePosition', function(data) {
         secPlayerPosition = data;
         updateRadar(findRadarPosition(secPlayerPosition), 're', 'rne');
+        //checkCollision(data, playerPosition);
     });
+     socket.on('disconnect', function () {
+        p1.css('color','rgb(184, 2, 2)');
+        p2.css('color','rgb(184, 2, 2)');
+        startBtn1.hide().removeAttr('disabled').css('color', 'white');
+        startBtn2.hide().removeAttr('disabled').css('color', 'white');
+        open.show();
+        close.hide();
+        socket.emit('disconnect', playerId);
+        console.log('Połączenie przez Socket.io zostało zakończone');
+    });
+     socket.on("alert", function(data) {
+        alert(data);
+     });
     
+});
+
+close.on('click', function() {
+    gameArea.html('<h2>obszar gry</h2>');
+    radarArea.html('<h5>radar</h5>');
+    socket.disconnect();
 });
 
 startBtn1.on('click', function(){
@@ -150,16 +175,16 @@ var updateGameArea = function(position){
 var checkCollision = function(position) {
     if (position-1 == secPlayerPosition) {
         gameArea.find('.f[data-id="'+(position-1)+'"]').removeClass('h').addClass(secPlayerId);
-        alert('znalazłeś');
+        socket.emit("endGame", 'endGame');
     }else if (position+1 == secPlayerPosition) {
         gameArea.find('.f[data-id="'+(position+1)+'"]').removeClass('h').addClass(secPlayerId);
-        alert('znalazłeś');
+        socket.emit("endGame", 'endGame');
     }else if (position-27 == secPlayerPosition) {
         gameArea.find('.f[data-id="'+(position-27)+'"]').removeClass('h').addClass(secPlayerId);
-        alert('znalazłeś');
+        socket.emit("endGame", 'endGame');
     }else if (position+27 == secPlayerPosition) {
         gameArea.find('.f[data-id="'+(position+27)+'"]').removeClass('h').addClass(secPlayerId);
-        alert('znalazłeś');
+        socket.emit("endGame", 'endGame');
     }
 };  
 
@@ -253,6 +278,6 @@ Array.prototype.randomElement = function () {
 };
 var isInArray = function(value, array) {
   return array.indexOf(value) > -1;
-}
+};
 
 });

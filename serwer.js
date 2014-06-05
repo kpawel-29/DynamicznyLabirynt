@@ -28,6 +28,7 @@ app.use(express.urlencoded());
 }));*/
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components/jquery/dist')));
+app.use(express.static(path.join(__dirname, 'bower_components/bootstrap/dist')));
 
 app.get('/', function (req, res) {
     res.redirect('/index.html');
@@ -68,6 +69,22 @@ io.sockets.on('connection', function (socket) {
     socket.on('updateMyPosition', function(position) {
         socket.broadcast.emit('updatePosition', position);
     });
+
+    socket.on('endGame', function(){
+        var rand = Math.floor(Math.random() * 6);
+        socket.emit('alert', "znalazłeś");
+        socket.broadcast.emit('alert', "zostałeś znaleziony");
+        socket.emit('startGame', rand);
+        socket.broadcast.emit('startGame', rand);
+    });
+    socket.on('disconnect', function (data) {
+        if (data == "h") {
+            player1 = false;
+        };
+        if (data == "c") {
+            player2 = false;
+        };
+    })
 
 });
 
