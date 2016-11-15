@@ -12,3 +12,9 @@ Opis
 - jQuery
 - html
 - css
+
+```sh
+$ bower install
+$ npm install
+$ node serwer.js
+```
